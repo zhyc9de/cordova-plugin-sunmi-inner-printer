@@ -180,6 +180,11 @@ public class Printer extends CordovaPlugin {
             public void onRaiseException(int code, String msg) {
               callbackContext.error(msg);
             }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
+              callbackContext.error(msg);
+            }
           });
         } catch (Exception e) {
           e.printStackTrace();
@@ -213,6 +218,11 @@ public class Printer extends CordovaPlugin {
 
             @Override
             public void onRaiseException(int code, String msg) {
+              callbackContext.error(msg);
+            }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
               callbackContext.error(msg);
             }
           });
@@ -284,38 +294,18 @@ public class Printer extends CordovaPlugin {
   }
 
   public void getPrintedLength(final CallbackContext callbackContext) {
+    try {
+      callbackContext.success(getPrintedLength());
+    } catch (Exception e) {
+      Log.i(TAG, "ERROR: " + e.getMessage());
+      callbackContext.error(e.getMessage());
+    }
+  }
+
+  private int getPrintedLength() throws Exception {
+    // Caution: This method is not fully test -- Januslo 2018-08-11
     final IWoyouService printerService = woyouService;
-    ThreadPoolManager.getInstance().executeTask(new Runnable() {
-      @Override
-      public void run() {
-        try {
-          printerService.getPrintedLength(new ICallback.Stub() {
-            @Override
-            public void onRunResult(boolean isSuccess) {
-              if (isSuccess) {
-                callbackContext.success("");
-              } else {
-                callbackContext.error(isSuccess + "");
-              }
-            }
-
-            @Override
-            public void onReturnString(String result) {
-              callbackContext.success(result);
-            }
-
-            @Override
-            public void onRaiseException(int code, String msg) {
-              callbackContext.error(msg);
-            }
-          });
-        } catch (Exception e) {
-          e.printStackTrace();
-          Log.i(TAG, "ERROR: " + e.getMessage());
-          callbackContext.error(e.getMessage());
-        }
-      }
-    });
+    return printerService.getPrintedLength();
   }
 
   public void lineWrap(int n, final CallbackContext callbackContext) {
@@ -342,6 +332,11 @@ public class Printer extends CordovaPlugin {
 
             @Override
             public void onRaiseException(int code, String msg) {
+              callbackContext.error(msg);
+            }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
               callbackContext.error(msg);
             }
           });
@@ -380,6 +375,11 @@ public class Printer extends CordovaPlugin {
             public void onRaiseException(int code, String msg) {
               callbackContext.error(msg);
             }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
+              callbackContext.error(msg);
+            }
           });
         } catch (Exception e) {
           e.printStackTrace();
@@ -414,6 +414,11 @@ public class Printer extends CordovaPlugin {
 
             @Override
             public void onRaiseException(int code, String msg) {
+              callbackContext.error(msg);
+            }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
               callbackContext.error(msg);
             }
           });
@@ -452,6 +457,11 @@ public class Printer extends CordovaPlugin {
             public void onRaiseException(int code, String msg) {
               callbackContext.error(msg);
             }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
+              callbackContext.error(msg);
+            }
           });
         } catch (Exception e) {
           e.printStackTrace();
@@ -486,6 +496,11 @@ public class Printer extends CordovaPlugin {
 
             @Override
             public void onRaiseException(int code, String msg) {
+              callbackContext.error(msg);
+            }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
               callbackContext.error(msg);
             }
           });
@@ -524,6 +539,11 @@ public class Printer extends CordovaPlugin {
 
             @Override
             public void onRaiseException(int code, String msg) {
+              callbackContext.error(msg);
+            }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
               callbackContext.error(msg);
             }
           });
@@ -589,6 +609,11 @@ public class Printer extends CordovaPlugin {
             public void onRaiseException(int code, String msg) {
               callbackContext.error(msg);
             }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
+              callbackContext.error(msg);
+            }
           });
         } catch (Exception e) {
           e.printStackTrace();
@@ -625,6 +650,11 @@ public class Printer extends CordovaPlugin {
 
               @Override
               public void onRaiseException(int code, String msg) {
+                callbackContext.error(msg);
+              }
+              
+              @Override
+              public void onPrintResult(int code, String msg) {
                 callbackContext.error(msg);
               }
             });
@@ -673,6 +703,11 @@ public class Printer extends CordovaPlugin {
             public void onRaiseException(int code, String msg) {
               callbackContext.error(msg);
             }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
+              callbackContext.error(msg);
+            }
           });
         } catch (Exception e) {
           e.printStackTrace();
@@ -711,6 +746,11 @@ public class Printer extends CordovaPlugin {
             public void onRaiseException(int code, String msg) {
               callbackContext.error(msg);
             }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
+              callbackContext.error(msg);
+            }
           });
         } catch (Exception e) {
           e.printStackTrace();
@@ -745,6 +785,11 @@ public class Printer extends CordovaPlugin {
 
             @Override
             public void onRaiseException(int code, String msg) {
+              callbackContext.error(msg);
+            }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
               callbackContext.error(msg);
             }
           });
@@ -828,6 +873,11 @@ public class Printer extends CordovaPlugin {
 
             @Override
             public void onRaiseException(int code, String msg) {
+              callbackContext.error(msg);
+            }
+
+            @Override
+            public void onPrintResult(int code, String msg) {
               callbackContext.error(msg);
             }
           });
