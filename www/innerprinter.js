@@ -2,65 +2,100 @@ exec = require('cordova/exec');
 
 module.exports = {
 
-  printerInit: function (resolve, reject) {
-    exec(resolve, reject, "Printer", "printerInit", []);
+  printerInit() {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, []);
+    })
   },
-  printerSelfChecking: function (resolve, reject) {
-    exec(resolve, reject, "Printer", "printerSelfChecking", []);
+  printerSelfChecking() {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, []);
+    })
   },
-  getPrinterSerialNo: function (resolve, reject) {
-    exec(resolve, reject, "Printer", "getPrinterSerialNo", []);
+  getPrinterSerialNo() {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, []);
+    })
   },
-  getPrinterVersion: function (resolve, reject) {
-    exec(resolve, reject, "Printer", "getPrinterVersion", []);
+  getPrinterVersion() {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, []);
+    })
   },
-  hasPrinter: function (resolve, reject) {
-    exec(resolve, reject, "Printer", "hasPrinter", []);
+  hasPrinter() {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, []);
+    })
   },
-  getPrintedLength: function (resolve, reject) {
-    exec(resolve, reject, "Printer", "getPrintedLength", []);
+  getPrintedLength() {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, []);
+    })
   },
-  lineWrap: function (count, resolve, reject) {
-    exec(resolve, reject, "Printer", "lineWrap", [count]);
+  lineWrap(count) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  sendRAWData: function (base64Data, resolve, reject) {
-    exec(resolve, reject, "Printer", "sendRAWData", [base64Data]);
+  sendRAWData(base64Data) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  setAlignment: function (alignment, resolve, reject) {
-    exec(resolve, reject, "Printer", "setAlignment", [alignment]);
+  setAlignment(alignment) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  setFontName: function (typeface, resolve, reject) {
-    exec(resolve, reject, "Printer", "setFontName", [typeface]);
+  setFontName(typeface) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  setFontSize: function (fontSize, resolve, reject) {
-    exec(resolve, reject, "Printer", "setFontSize", [fontSize]);
+  setFontSize(fontSize) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  printTextWithFont: function (text, typeface, fontSize, resolve, reject) {
-    exec(resolve, reject, "Printer", "printTextWithFont", [text, typeface, fontSize]);
+  printText(text) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  printColumnsText: function (colsTextArr, colsWidthArr, colsAlign, resolve, reject) {
-    exec(resolve, reject, "Printer", "printColumnsText", [colsTextArr, colsWidthArr, colsAlign]);
+  printTextWithFont(text, typeface, fontSize) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  printBitmap: function (base64Data, width, height, resolve, reject) {
-    exec(resolve, reject, "Printer", "printBitmap", [base64Data, width, height]);
+  printColumnsText(colsTextArr, colsWidthArr, colsAlign) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  printBarCode: function (barCodeData, symbology, width, height, textPosition, resolve, reject) {
-    exec(resolve, reject, "Printer", "printBarCode", [barCodeData, symbology, width, height, textPosition]);
+  printBitmap(base64Data, width, height) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  printQRCode: function (qrCodeData, moduleSize, errorLevel, resolve, reject) {
-    exec(resolve, reject, "Printer", "printQRCode", [qrCodeData, moduleSize, errorLevel]);
+  printBarCode(barCodeData, symbology, width, height, textPosition) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  printOriginalText: function (text, resolve, reject) {
-    exec(resolve, reject, "Printer", "printOriginalText", [text]);
+  printQRCode(qrCodeData, moduleSize, errorLevel) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  printString: function (text, resolve, reject) {
-    exec(resolve, reject, "Printer", "printString", [text]);
+  printOriginalText(text) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  printerStatusStartListener: function (onSuccess, onError) {
-    exec(onSuccess, onError, "Printer", "printerStatusStartListener", []);
+  cutPaper() {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
   },
-  printerStatusStopListener: function () {
-    exec(function () {}, function () {}, "Printer", "printerStatusStopListener", []);
-  }
 
 }
