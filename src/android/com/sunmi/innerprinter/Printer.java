@@ -132,6 +132,9 @@ public class Printer extends CordovaPlugin {
         } else if (action.equals("printColumnsText")) {
             printColumnsText(data.getJSONArray(0), data.getJSONArray(1), data.getJSONArray(2), callbackContext);
             return true;
+        } else if (action.equals("printColumnsString")) {
+            printColumnsString(data.getJSONArray(0), data.getJSONArray(1), data.getJSONArray(2), callbackContext);
+            return true;
         } else if (action.equals("printBitmap")) {
             printBitmap(data.getString(0), data.getInt(1), data.getInt(2), callbackContext);
             return true;
@@ -629,6 +632,74 @@ public class Printer extends CordovaPlugin {
             public void run() {
                 try {
                     printerService.printColumnsText(clst, clsw, clsa, new ICallback.Stub() {
+                        @Override
+                        public void onRunResult(boolean isSuccess) {
+                            if (isSuccess) {
+                                callbackContext.success("");
+                            } else {
+                                callbackContext.error(isSuccess + "");
+                            }
+                        }
+
+                        @Override
+                        public void onReturnString(String result) {
+                            callbackContext.success(result);
+                        }
+
+                        @Override
+                        public void onRaiseException(int code, String msg) {
+                            callbackContext.error(msg);
+                        }
+
+                        @Override
+                        public void onPrintResult(int code, String msg) {
+                            callbackContext.error(msg);
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.i(TAG, "ERROR: " + e.getMessage());
+                    callbackContext.error(e.getMessage());
+                }
+            }
+        });
+    }
+
+    public void printColumnsString(JSONArray colsTextArr, JSONArray colsWidthArr, JSONArray colsAlign,
+                                 final CallbackContext callbackContext) {
+        final IWoyouService printerService = woyouService;
+        final String[] clst = new String[colsTextArr.length()];
+        for (int i = 0; i < colsTextArr.length(); i++) {
+            try {
+                clst[i] = colsTextArr.getString(i);
+            } catch (JSONException e) {
+                clst[i] = "-";
+                Log.i(TAG, "ERROR TEXT: " + e.getMessage());
+            }
+        }
+        final int[] clsw = new int[colsWidthArr.length()];
+        for (int i = 0; i < colsWidthArr.length(); i++) {
+            try {
+                clsw[i] = colsWidthArr.getInt(i);
+            } catch (JSONException e) {
+                clsw[i] = 1;
+                Log.i(TAG, "ERROR WIDTH: " + e.getMessage());
+            }
+        }
+        final int[] clsa = new int[colsAlign.length()];
+        for (int i = 0; i < colsAlign.length(); i++) {
+            try {
+                clsa[i] = colsAlign.getInt(i);
+            } catch (JSONException e) {
+                clsa[i] = 0;
+                Log.i(TAG, "ERROR ALIGN: " + e.getMessage());
+            }
+        }
+        ThreadPoolManager.getInstance().executeTask(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    printerService.printColumnsString(clst, clsw, clsa, new ICallback.Stub() {
                         @Override
                         public void onRunResult(boolean isSuccess) {
                             if (isSuccess) {

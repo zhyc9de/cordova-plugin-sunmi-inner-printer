@@ -72,6 +72,11 @@ module.exports = {
       exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
     })
   },
+  printColumnsString(colsTextArr, colsWidthArr, colsAlign) {
+    return new Promise((resolve, reject) => {
+      exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
+    })
+  },
   printBitmap(base64Data, width, height) {
     return new Promise((resolve, reject) => {
       exec(resolve, reject, "Printer", arguments.callee.name, [...arguments]);
